@@ -1,6 +1,6 @@
 
-import log      from './utils/log.util'
+import koa          from 'koa'
+import log          from './utils/log.util'
+import port         from './utils/port.util'
 
-log.system().error('需要有更高的权限');
-
-console.log('22222')
+console.log(port);

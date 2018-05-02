@@ -21,6 +21,7 @@
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "iconv-lite": "^0.4.19",
     "jsonwebtoken": "^7.3.0",
+    "koa": "^2.5.1",
     "koa-log4": "^2.3.0",
     "mongoose": "^4.9.5"
   }

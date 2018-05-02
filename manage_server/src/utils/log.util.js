@@ -1,10 +1,10 @@
-import koaLog4      from 'koa-log4'
-import config       from './../config/log.config'
+import koaLog4          from 'koa-log4'
+import logConfig        from './../config/log.config'
 
 /**
  * 载入配置
  * */
-koaLog4.configure(config);
+koaLog4.configure(logConfig);
 
 
 /**
