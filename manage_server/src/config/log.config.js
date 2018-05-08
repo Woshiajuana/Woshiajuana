@@ -1,6 +1,9 @@
 
 const config = {
     appenders: {
+        console: {
+            type: 'console',
+        },
         app: {
             type: 'file',
             filename: 'logs/app/app.log',
@@ -10,7 +13,8 @@ const config = {
         system: {
             type: 'dateFile',
             filename: 'logs/system/system',
-            pattern: '_yyyy_MM_dd.log'
+            pattern: '_yyyy_MM_dd.log',
+            alwaysIncludePattern: true,
         },
         http: {
             type: 'dateFile',
@@ -30,18 +34,21 @@ const config = {
     categories: {
         default: {
             appenders: [
-                'system'
+                'console',
+                'system',
             ],
             level: 'debug'
         },
         app: {
             appenders: [
+                'console',
                 'app',
             ],
             level: 'info'
         },
         system: {
             appenders: [
+                'console',
                 'app',
                 'system'
             ],
@@ -49,6 +56,7 @@ const config = {
         },
         http: {
             appenders: [
+                'console',
                 'app',
                 'http'
             ],
@@ -56,6 +64,7 @@ const config = {
         },
         db: {
             appenders: [
+                'console',
                 'app',
                 'db'
             ],

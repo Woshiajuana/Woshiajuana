@@ -9,7 +9,7 @@ let PORT = '';
     let index = wowCool.findFirstIndexForArr(parameters, (item) => {
         return item === '--port' || item === '-p';
     });
-    PORT = arr[index + 1] || portConfig.port;
+    PORT = (index !== -1 && arr[index + 1]) || portConfig.port;
 })(parameters);
 
 export default PORT;
