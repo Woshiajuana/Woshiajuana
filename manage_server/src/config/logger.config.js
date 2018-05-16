@@ -3,6 +3,7 @@ const config = {
     appenders: {
         console: {
             type: 'console',
+            replaceConsole: true,
         },
         app: {
             type: 'file',

@@ -9,16 +9,7 @@ import koa_views            from 'koa-views'
 import koa_cors             from 'kcors'
 import logger               from './utils/logger.util'
 import router               from './utils/router.util'
-
-// const pipe_middleware = require('./middleware/pipe.middleware');
-import test_middleware from './middleware/test.middleware';
-import test_middleware2 from './middleware/test.middleware';
-
-
-console.log(test_middleware.toString())
-console.log(test_middleware2.toString())
-
-
+import pipe_middleware      from './middleware/pipe.middleware'
 
 const app = new Koa();
 
@@ -51,10 +42,7 @@ app.use(async (ctx, next) => {
 
 // middleware 中间件
 app.use(koa_convert(
-    // test_middleware(),  // 通讯
-    function (ctx, next) {
-        return next();
-    }
+    pipe_middleware(),   // 通讯
 ));
 
 // static file 静态文件
