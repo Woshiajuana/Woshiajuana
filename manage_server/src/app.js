@@ -1,41 +1,79 @@
 
-import koa          from 'koa'
-import http         from 'http'
-import log          from './utils/log.util'
-import port         from './utils/port.util'
+import Koa                  from 'koa'
+import path                 from 'path'
+import koa_body             from 'koa-body'
+import koa_favicon          from 'koa-favicon'
+import koa_convert          from 'koa-convert'
+import koa_static           from 'koa-static'
+import koa_views            from 'koa-views'
+import koa_cors             from 'kcors'
+import logger               from './utils/logger.util'
+import router               from './utils/router.util'
 
-const app = new koa();
+// const pipe_middleware = require('./middleware/pipe.middleware');
+import test_middleware from './middleware/test.middleware';
+import test_middleware2 from './middleware/test.middleware';
 
 
-try {
-    const server = http.createServer(app.callback);
-    server.listen(port);
-    server.on('error', (err) => {
-        if (err.syscall !== 'listen') throw err;
-        console.log(1)
-        switch (err.code) {
-            case 'EACCES':
-                console.log(2)
-                log.system().error(`${port}=> 端口号需要有更高的权限`);
-                // process.exit(1);
-                break;
-            case 'EADDRINUSE':
-                console.log(3)
-                log.system().error(`${port}=> 端口被占用`);
-                // process.exit(1);
-                break;
-            default:
-                console.log(4)
-                throw err;
-        }
-    });
-    server.on('listening', () => {
-        const address = server.address();
-        const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + address.port;
-        console.log(bind);
-        log.system().info('服务启动=> ' + bind);
-    });
-} catch (err) {
-    log.system().error(`启动失败，原因=> ${ JSON.stringify(err) }`)
-}
+console.log(test_middleware.toString())
+console.log(test_middleware2.toString())
 
+
+
+const app = new Koa();
+
+// json format 格式
+app.jsonSpaces = 0;
+app.keys = ['key'];
+
+// favicon
+app.use(koa_favicon(`${__dirname}../public/favicon.ico`));
+
+// cross domain 跨域
+app.use(koa_cors({
+    credentials: true,
+}));
+
+// request 解析
+app.use(koa_convert(koa_body({
+    multipart: true,
+    formLimit: '5mb',
+})));
+
+// log 日志
+app.use(logger.http());
+app.use(async (ctx, next) => {
+    const start = new Date();
+    await next();
+    const ms = new Date() - start;
+    logger.app().info(`${ctx.method} ${ctx.url} - ${ms}ms`);
+});
+
+// middleware 中间件
+app.use(koa_convert(
+    // test_middleware(),  // 通讯
+    function (ctx, next) {
+        return next();
+    }
+));
+
+// static file 静态文件
+app.use(koa_convert(koa_static(path.join(__dirname, '../publish'))));
+
+// views page 渲染
+app.use(koa_views(path.join(__dirname, '../publish/themes'), {
+    extension: 'ejs',
+}));
+
+// router 路由
+app.use(router.routes());
+app.use(router.allowedMethods({
+    throw: true,
+}));
+
+// error event 监听
+app.on('error', (err, ctx) => {
+    logger.app().error(`服务错误=> ${err}, ${ctx}`)
+});
+
+export default app;

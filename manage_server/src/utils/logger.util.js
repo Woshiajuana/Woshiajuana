@@ -1,11 +1,10 @@
 import koaLog4          from 'koa-log4'
-import logConfig        from './../config/log.config'
+import loggerConfig        from '../config/logger.config'
 
 /**
  * 载入配置
  * */
-koaLog4.configure(logConfig);
-
+koaLog4.configure(loggerConfig);
 
 /**
  * 导出日志接口
@@ -16,3 +15,4 @@ export default {
     system: () => koaLog4.getLogger('system'),
     database: () => koaLog4.getLogger('database'),
 }
+

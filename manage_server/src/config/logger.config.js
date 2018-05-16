@@ -75,3 +75,5 @@ const config = {
 };
 
 export default config;
+
+export let logger_type = ['app', 'http', 'system', 'database'];

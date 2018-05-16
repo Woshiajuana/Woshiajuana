@@ -1,2 +1,3 @@
 require('babel-core/register');
-require('./src/app.js');
+require("babel-polyfill");
+require('./bin');
