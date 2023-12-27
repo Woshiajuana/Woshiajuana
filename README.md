@@ -15,7 +15,6 @@
 
 <div>
   <img height="180em" src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=Woshiajuana&show_icons=true" />
-  <br/>
   <img height="180em" src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=Woshiajuana&layout=compact" />
 </div>
 
