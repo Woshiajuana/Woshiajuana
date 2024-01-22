@@ -1,6 +1,12 @@
-## 哈哈 
+## 欢迎来带我的 github ！👏👏
 
-### 欢迎来带我的 github ！👏👏
+<p align="center">
+  <samp>
+    <a href="https://ajuan.daysnap.cn/">个人</a> .
+    <a href="https://ajuan.daysnap.cn/blog">博客</a> .
+    <a href="https://ajuan.daysnap.cn/project">项目</a> .
+  </samp>
+</p>
 
 这是我维护的npm包:
 
