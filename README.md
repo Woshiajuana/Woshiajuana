@@ -1,4 +1,4 @@
-## 欢迎来带我的 github ！👏👏
+## 欢迎 👏👏
 
 <p align="center">
   <samp>
