@@ -4,7 +4,7 @@
   <samp>
     <a href="https://ajuan.daysnap.cn/">个人</a> .
     <a href="https://ajuan.daysnap.cn/blog">博客</a> .
-    <a href="https://ajuan.daysnap.cn/project">项目</a> .
+    <a href="https://ajuan.daysnap.cn/project">项目</a>
   </samp>
 </p>
 
